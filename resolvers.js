@@ -1,10 +1,11 @@
-const { PubSub, withFilter } = require('graphql-subscriptions');
+const { PubSub } = require('graphql-subscriptions');
+const pubsub = new PubSub();
 
 const lineDataSet = [{ pv: 1300 }, { pv: 1300 }, { pv: 1300 }];
 
 const resolvers = {
     Query: {
-        async getLineDataSet(parentValue) {
+        getLineDataSet(parentValue) {
             return lineDataSet;
         }
     },
@@ -12,7 +13,7 @@ const resolvers = {
         async addToLineDataSet(parentValue) {
             const pv = { pv: 10000 };
 
-            lineDataSet.append(pv);
+            lineDataSet.push(pv);
 
             pubsub.publish('lineDataSetUpdated', {
                 pv
