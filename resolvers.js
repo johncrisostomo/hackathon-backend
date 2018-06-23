@@ -78,7 +78,7 @@ const resolvers = {
             data[name].barDataSet[data[name].barDataSet.length - 1] = newValue;
 
             pubsub.publish('barDataSetUpdated', {
-                newValue
+                barDataSetUpdated: newValue
             });
 
             return newValue;
@@ -91,10 +91,10 @@ const resolvers = {
 
             data[name].activityDataSet[
                 data[name].lineDataSet.length - 1
-            ] = newVAlue;
+            ] = newValue;
 
             pubsub.publish('activityDataSetUpdated', {
-                newValue
+                activityDataSetUpdated: newValue
             });
 
             return newValue;
@@ -103,6 +103,12 @@ const resolvers = {
     Subscription: {
         lineDataSetUpdated: {
             subscribe: () => pubsub.asyncIterator('lineDataSetUpdated')
+        },
+        barDataSetUpdated: {
+            subscribe: () => pubsub.asyncIterator('barDataSetUpdated')
+        },
+        activityDataSetUpdated: {
+            subscribe: () => pubsub.asyncIterator('activityDataSetUpdated')
         }
     }
 };

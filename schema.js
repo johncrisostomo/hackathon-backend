@@ -33,6 +33,8 @@ const typeDefs = `
 
   type Subscription {
       lineDataSetUpdated: LineData
+      activityDataSetUpdated: ActivityData
+      barDataSetUpdated: BarData
   }
 
   schema {
