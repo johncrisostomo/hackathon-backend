@@ -91,7 +91,7 @@ module.exports = {
             .fill()
             .map((e, i) => ({
                 id: i + 1,
-                title: (new Date(faker.date.recent()) / 1000).toFixed(0),
+                title: new Date(faker.date.recent()),
                 text: `${faker.name.findName()} ${
                     i % 2 === 0 ? 'entered' : 'left'
                 } the room.`
