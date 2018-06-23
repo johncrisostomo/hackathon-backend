@@ -5,7 +5,6 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { execute, subscribe } = require('graphql');
 const { SubscriptionServer } = require('subscriptions-transport-ws');
 const { createServer } = require('http');
-const url = require('url');
 
 const schema = require('./schema');
 
@@ -24,14 +23,10 @@ app.use(
 
 app.use(
     '/graphiql',
-    graphiqlExpress(req => ({
+    graphiqlExpress({
         endpointURL: '/graphql',
-        subscriptionsEndpoint: url.format({
-            host: req.get('host'),
-            protocol: req.protocol === 'https' ? 'wss' : 'ws',
-            pathname: '/subscriptions'
-        })
-    }))
+        subscriptionsEndpoint: 'ws://localhost:3030/subscriptions'
+    })
 );
 
 const PORT = process.env.PORT || 3030;
