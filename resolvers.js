@@ -82,7 +82,10 @@ const resolvers = {
                 });
             } else {
                 pubsub.publish('activityDataSetUpdatedRoom', {
-                    activityDataSetUpdatedRoom: newValue
+                    activityDataSetUpdatedRoom: {
+                        ...newValue,
+                        interval: text.indexOf('left') > -1 ? 2 : null
+                    }
                 });
             }
 

@@ -21,7 +21,7 @@ const typeDefs = `
       id: Int,
       title: String,
       text: String,
-      type: String
+      interval: Int
   }
 
   type PieData {
