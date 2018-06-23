@@ -23,28 +23,28 @@ module.exports = {
             { id: 3, title: '6-11 Leo', text: 'Printed 105 pages' },
             { id: 4, title: '6-12 Vincent', text: 'Printed 72 pages' },
             { id: 5, title: '6-13 Andre', text: 'Printed 90 pages' },
-            { id: 6, date: '6-14 Shero', text: 'Printed 50 pages' },
-            { id: 7, date: '6-15 Rachael', text: 'Printed 56 pages' },
-            { id: 8, date: '6-16 Varun', text: 'Printed 24 pages' },
-            { id: 9, date: '6-17 George', text: 'Printed 40 pages' },
-            { id: 10, date: '6-18 Yogesh', text: 'Printed 59 pages' },
-            { id: 11, date: '6-19 Allan', text: 'Printed 80 pages' },
-            { id: 12, date: '6-20 Johnny', text: 'Printed 225' },
-            { id: 13, date: '6-21 Michael', text: 'Printed 76 pages' },
-            { id: 14, date: '6-22 Vincent', text: 'Printed 24 pages' },
-            { id: 15, date: '6-23 John', text: 'Printed 13 pages' }
+            { id: 6, title: '6-14 Shero', text: 'Printed 50 pages' },
+            { id: 7, title: '6-15 Rachael', text: 'Printed 56 pages' },
+            { id: 8, title: '6-16 Varun', text: 'Printed 24 pages' },
+            { id: 9, title: '6-17 George', text: 'Printed 40 pages' },
+            { id: 10, title: '6-18 Yogesh', text: 'Printed 59 pages' },
+            { id: 11, title: '6-19 Allan', text: 'Printed 80 pages' },
+            { id: 12, title: '6-20 Johnny', text: 'Printed 225' },
+            { id: 13, title: '6-21 Michael', text: 'Printed 76 pages' },
+            { id: 14, title: '6-22 Vincent', text: 'Printed 24 pages' },
+            { id: 15, title: '6-23 John', text: 'Printed 13 pages' }
         ],
         barDataSet: [
             {
-                name: 'January',
+                name: 'July',
                 uv: 1000
             },
             {
-                name: 'February',
+                name: 'May',
                 uv: 2700
             },
             {
-                name: 'March',
+                name: 'June',
                 uv: 3800
             }
         ],
