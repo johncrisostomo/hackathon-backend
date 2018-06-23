@@ -1,19 +1,28 @@
 const { PubSub } = require('graphql-subscriptions');
 const pubsub = new PubSub();
 
-const lineDataSet = [{ pv: 1300 }, { pv: 1300 }, { pv: 1300 }];
+const data = {
+    printer: {
+        lineDataSet: [{ pv: 1300 }, { pv: 1300 }, { pv: 1300 }],
+        activityDataSet: [],
+        barDataSet: []
+    },
+    room: {
+        lineDataSet: [{ pv: 400 }, { pv: 1300 }, { pv: 1300 }]
+    }
+};
 
 const resolvers = {
     Query: {
-        getLineDataSet(parentValue) {
-            return lineDataSet;
+        getLineDataSet(parentValue, { name }) {
+            return data[name].lineDataSet;
         }
     },
     Mutation: {
-        async addToLineDataSet(parentValue) {
-            const pv = { pv: 10000 };
+        async addToLineDataSet(parentValue, { name, value }) {
+            const pv = { pv: value };
 
-            lineDataSet.push(pv);
+            data[name].lineDataSet[data[name].lineDataSet.length - 1] = pv;
 
             pubsub.publish('lineDataSetUpdated', {
                 pv

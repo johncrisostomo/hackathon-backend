@@ -7,11 +7,11 @@ const typeDefs = `
   }
 
   type Query {
-    getLineDataSet: [LineData]
+    getLineDataSet(name: String): [LineData]
   }
 
   type Mutation {
-    addToLineDataSet: LineData
+    addToLineDataSet(name: String, value: Int): LineData
   }
 
   type Subscription {
