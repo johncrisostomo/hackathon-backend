@@ -4,7 +4,7 @@ const lineDataSet = [{ pv: 1300 }, { pv: 1300 }, { pv: 1300 }];
 
 const resolvers = {
     Query: {
-        async getLineDataSet(parentValue, { name }) {
+        async getLineDataSet(parentValue) {
             return lineDataSet;
         }
     },
