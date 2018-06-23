@@ -1,3 +1,5 @@
+var faker = require('faker');
+
 module.exports = {
     printer: {
         cardsDataSet: {
@@ -85,63 +87,14 @@ module.exports = {
         ]
     },
     room: {
-        lineDataSet: [
-            { date: '6-21', v: 1300 },
-            { date: '6-22', v: 1300 },
-            { date: '6-23', v: 1300 }
-        ],
-        activityDataSet: [
-            {
-                id: 1,
-                title: 'Room 1',
-                text: 'Printer used.',
-                type: 'printer'
-            },
-            {
-                id: 2,
-                title: 'Room 2',
-                text: 'Printer used.',
-                type: 'printer'
-            },
-            {
-                id: 3,
-                title: 'Room 3',
-                text: 'Printer used.',
-                type: 'printer'
-            }
-        ],
-        barDataSet: [
-            {
-                name: 'May',
-                uv: 1000
-            },
-            {
-                name: 'June',
-                uv: 2700
-            },
-            {
-                name: 'July',
-                uv: 3800
-            }
-        ],
-        pieDataSet: [
-            {
-                label: 'Printer A',
-                value: 670,
-                color: '#7A296B'
-            },
-
-            {
-                label: 'Printer B',
-                value: 380,
-                color: '#AA6039'
-            },
-
-            {
-                label: 'Printer C',
-                value: 250,
-                color: '#549431'
-            }
-        ]
+        activityDataSet: Array(15)
+            .fill()
+            .map((e, i) => ({
+                id: i + 1,
+                title: (new Date(faker.date.recent()) / 1000).toFixed(0),
+                text: `${faker.name.findName()} ${
+                    i % 2 === 0 ? 'entered' : 'left'
+                } the room.`
+            }))
     }
 };
