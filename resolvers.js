@@ -67,7 +67,7 @@ const resolvers = {
             data[name].lineDataSet[data[name].lineDataSet.length - 1] = pv;
 
             pubsub.publish('lineDataSetUpdated', {
-                pv
+                lineDataSetUpdated: pv
             });
 
             return pv;
