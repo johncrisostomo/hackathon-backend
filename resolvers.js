@@ -112,11 +112,22 @@ const resolvers = {
             const newValue = { id, title, text, type };
 
             data[name].activityDataSet[
-                data[name].lineDataSet.length - 1
+                data[name].activityDataSet.length - 1
             ] = newValue;
 
             pubsub.publish('activityDataSetUpdated', {
                 activityDataSetUpdated: newValue
+            });
+
+            return newValue;
+        },
+        async addToPieDataSet(parentValue, { name, color, label, value }) {
+            const newValue = { name, color, label, value };
+
+            data[name].pieDataSet[data[name].pieDataSet.length - 1] = newValue;
+
+            pubsub.publish('pieDataSetUpdated', {
+                pieDataSetUpdated: newValue
             });
 
             return newValue;
@@ -131,6 +142,9 @@ const resolvers = {
         },
         activityDataSetUpdated: {
             subscribe: () => pubsub.asyncIterator('activityDataSetUpdated')
+        },
+        pieDataSetUpdated: {
+            subscribe: () => pubsub.asyncIterator('pieDataSetUpdated')
         }
     }
 };
