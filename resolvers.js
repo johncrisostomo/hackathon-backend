@@ -26,6 +26,10 @@ const resolvers = {
             data.printer.cardsDataSet.consumed + value;
             data.printer.cardsDataSet.left - value;
 
+            pubsub.publish('printCardDataUpdated', {
+                printCardDataUpdated: data.printer.cardsDataSet
+            });
+
             return data.printer.cardsDataSet;
         },
         addToLineDataSet(parentValue, { name, date, value }) {
@@ -126,6 +130,9 @@ const resolvers = {
         },
         pieDataSetUpdatedRoom: {
             subscribe: () => pubsub.asyncIterator('pieDataSetUpdatedRoom')
+        },
+        printCardDataUpdated: {
+            subscribe: () => pubsub.asyncIterator('printCardDataUpdated')
         }
     }
 };
