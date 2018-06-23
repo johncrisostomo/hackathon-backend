@@ -3,11 +3,26 @@ const resolvers = require('./resolvers');
 
 const typeDefs = `
   type LineData {
-      pv: Int
+      date: String
+      v: Int
+  }
+
+  type BarData {
+      name: String,
+      uv: Int
+  }
+
+  type ActivityData {
+      id: Int,
+      title: String,
+      text: String,
+      type: String
   }
 
   type Query {
     getLineDataSet(name: String): [LineData]
+    getBarDataSet(name: String): [BarData]
+    getActivityDataSet(name: String): [ActivityData]
   }
 
   type Mutation {
