@@ -63,7 +63,64 @@ const data = {
         ]
     },
     room: {
-        lineDataSet: [{ pv: 400 }, { pv: 1300 }, { pv: 1300 }]
+        lineDataSet: [
+            { date: '6-21', v: 1300 },
+            { date: '6-22', v: 1300 },
+            { date: '6-23', v: 1300 }
+        ],
+        activityDataSet: [
+            {
+                id: 1,
+                title: 'Room 1',
+                text: 'Printer used.',
+                type: 'printer'
+            },
+            {
+                id: 2,
+                title: 'Room 2',
+                text: 'Printer used.',
+                type: 'printer'
+            },
+            {
+                id: 3,
+                title: 'Room 3',
+                text: 'Printer used.',
+                type: 'printer'
+            }
+        ],
+        barDataSet: [
+            {
+                name: 'May',
+                uv: 1000
+            },
+            {
+                name: 'June',
+                uv: 2700
+            },
+            {
+                name: 'July',
+                uv: 3800
+            }
+        ],
+        pieDataSet: [
+            {
+                label: 'Printer A',
+                value: 670,
+                color: '#7A296B'
+            },
+
+            {
+                label: 'Printer B',
+                value: 380,
+                color: '#AA6039'
+            },
+
+            {
+                label: 'Printer C',
+                value: 250,
+                color: '#549431'
+            }
+        ]
     }
 };
 
@@ -107,7 +164,7 @@ const resolvers = {
         },
         async addToActivityDataSet(parentValue, { name, title, text, type }) {
             const newValue = {
-                id: data[name].activityDataSet.length,
+                id: data[name].activityDataSet.length + 1,
                 title,
                 text,
                 type
