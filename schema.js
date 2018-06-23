@@ -27,6 +27,8 @@ const typeDefs = `
 
   type Mutation {
     addToLineDataSet(name: String, value: Int): LineData
+    addToBarDataSet(name: String, uv: Int, nameField: String): BarData
+    addToActivityDataSet(name: String, id: Int, title: String, text: String, type: String) : ActivityData
   }
 
   type Subscription {
