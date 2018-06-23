@@ -1,5 +1,9 @@
 module.exports = {
     printer: {
+        cardsDataSet: {
+            consumed: 1066,
+            left: 50
+        },
         lineDataSet: [
             { date: '6-09', v: 100 },
             { date: '6-10', v: 52 },

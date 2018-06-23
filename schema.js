@@ -2,6 +2,11 @@ const { makeExecutableSchema } = require('graphql-tools');
 const resolvers = require('./resolvers');
 
 const typeDefs = `
+  type PrinterCardData {
+    consumed: Int
+    left: Int
+  }
+
   type LineData {
       date: String
       v: Int
@@ -26,6 +31,7 @@ const typeDefs = `
   }
 
   type Query {
+    getPrintCardData: PrinterCardData
     getLineDataSet(name: String): [LineData]
     getBarDataSet(name: String): [BarData]
     getActivityDataSet(name: String): [ActivityData]
@@ -33,6 +39,7 @@ const typeDefs = `
   }
 
   type Mutation {
+    changePrintCardData(value: Int): PrinterCardData
     addToLineDataSet(name: String, date: String, value: Int): LineData
     addToBarDataSet(name: String, uv: Int, nameField: String): BarData
     addToActivityDataSet(name: String, title: String, text: String, type: String) : ActivityData
@@ -40,6 +47,7 @@ const typeDefs = `
 }
 
   type Subscription {
+      printCardDataUpdated: PrinterCardData
       lineDataSetUpdated: LineData
       activityDataSetUpdated: ActivityData
       barDataSetUpdated: BarData

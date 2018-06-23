@@ -5,6 +5,9 @@ const data = require('./mocks');
 
 const resolvers = {
     Query: {
+        getPrintCardData() {
+            return data.printer.cardsDataSet;
+        },
         getLineDataSet(parentValue, { name }) {
             return data[name].lineDataSet;
         },
@@ -19,7 +22,13 @@ const resolvers = {
         }
     },
     Mutation: {
-        async addToLineDataSet(parentValue, { name, date, value }) {
+        changePrintCardData(parentValue, { value }) {
+            data.printer.cardsDataSet.consumed + value;
+            data.printer.cardsDataSet.left - value;
+
+            return data.printer.cardsDataSet;
+        },
+        addToLineDataSet(parentValue, { name, date, value }) {
             const pv = { date, v: value };
 
             data[name].lineDataSet[data[name].lineDataSet.length - 1] = pv;
@@ -36,7 +45,7 @@ const resolvers = {
 
             return pv;
         },
-        async addToBarDataSet(parentValue, { name, uv, nameField }) {
+        addToBarDataSet(parentValue, { name, uv, nameField }) {
             const newValue = { uv, name: nameField };
 
             data[name].barDataSet[data[name].barDataSet.length - 1] = newValue;
@@ -53,7 +62,7 @@ const resolvers = {
 
             return newValue;
         },
-        async addToActivityDataSet(parentValue, { name, title, text, type }) {
+        addToActivityDataSet(parentValue, { name, title, text, type }) {
             const newValue = {
                 id: data[name].activityDataSet.length + 1,
                 title,
@@ -75,7 +84,7 @@ const resolvers = {
 
             return newValue;
         },
-        async addToPieDataSet(parentValue, { name, color, label, value }) {
+        addToPieDataSet(parentValue, { name, color, label, value }) {
             const newValue = { name, color, label, value };
 
             data[name].pieDataSet[data[name].pieDataSet.length - 1] = newValue;
