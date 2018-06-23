@@ -5,8 +5,8 @@ const data = {
     printer: {
         lineDataSet: [
             { date: '6-11', v: 1300 },
-            { date: '6-11', v: 1300 },
-            { date: '6-11', v: 1300 }
+            { date: '6-12', v: 1300 },
+            { date: '6-13', v: 1300 }
         ],
         activityDataSet: [
             {
@@ -46,7 +46,7 @@ const data = {
             {
                 label: 'Room A',
                 value: 200,
-                color: '#fff'
+                color: '#8f8f8f'
             },
 
             {
@@ -58,7 +58,7 @@ const data = {
             {
                 label: 'Room C',
                 value: 100,
-                color: '#CCC0000'
+                color: '#CC0000'
             }
         ]
     },
