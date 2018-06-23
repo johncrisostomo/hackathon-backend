@@ -18,7 +18,8 @@
         "nodemon": "^1.17.5"
     },
     "scripts": {
-        "start": "nodemon index.js"
+        "start": "node index.js",
+        "start:dev": "nodemon index.js"
     },
     "repository": {
         "type": "git",
