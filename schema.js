@@ -19,10 +19,17 @@ const typeDefs = `
       type: String
   }
 
+  type PieData {
+    label: String,
+    value: Int,
+    color: String
+  }
+
   type Query {
     getLineDataSet(name: String): [LineData]
     getBarDataSet(name: String): [BarData]
     getActivityDataSet(name: String): [ActivityData]
+    getPieDataSet(name: String): [PieData]
   }
 
   type Mutation {

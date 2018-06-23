@@ -41,6 +41,25 @@ const data = {
                 name: 'March',
                 uv: 3800
             }
+        ],
+        pieDataSet: [
+            {
+                label: 'Room A',
+                value: 200,
+                color: '#fff'
+            },
+
+            {
+                label: 'Room B',
+                value: 600,
+                color: '#000'
+            },
+
+            {
+                label: 'Room C',
+                value: 100,
+                color: '#CCC0000'
+            }
         ]
     },
     room: {
@@ -58,6 +77,9 @@ const resolvers = {
         },
         getActivityDataSet(parentValue, { name }) {
             return data[name].activityDataSet;
+        },
+        getPieDataSet(parentValue, { name }) {
+            return data[name].pieDataSet;
         }
     },
     Mutation: {
