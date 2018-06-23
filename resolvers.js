@@ -44,19 +44,19 @@ const data = {
         ],
         pieDataSet: [
             {
-                label: 'Room A',
+                label: 'Printer A',
                 value: 200,
                 color: '#8f8f8f'
             },
 
             {
-                label: 'Room B',
+                label: 'Printer B',
                 value: 600,
                 color: '#000'
             },
 
             {
-                label: 'Room C',
+                label: 'Printer C',
                 value: 100,
                 color: '#CC0000'
             }
@@ -105,15 +105,15 @@ const resolvers = {
 
             return newValue;
         },
-        async addToActivityDataSet(
-            parentValue,
-            { name, id, title, text, type }
-        ) {
-            const newValue = { id, title, text, type };
+        async addToActivityDataSet(parentValue, { name, title, text, type }) {
+            const newValue = {
+                id: data[name].activityDataSet.length,
+                title,
+                text,
+                type
+            };
 
-            data[name].activityDataSet[
-                data[name].activityDataSet.length - 1
-            ] = newValue;
+            data[name].activityDataSet.push(newValue);
 
             pubsub.publish('activityDataSetUpdated', {
                 activityDataSetUpdated: newValue
