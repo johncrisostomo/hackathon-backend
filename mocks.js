@@ -36,8 +36,20 @@ module.exports = {
         ],
         barDataSet: [
             {
-                name: 'July',
-                uv: 1000
+                name: 'January',
+                uv: 380
+            },
+            {
+                name: 'February',
+                uv: 800
+            },
+            {
+                name: 'March',
+                uv: 1066
+            },
+            {
+                name: 'April',
+                uv: 876
             },
             {
                 name: 'May',
@@ -45,7 +57,7 @@ module.exports = {
             },
             {
                 name: 'June',
-                uv: 3800
+                uv: 1066
             }
         ],
         pieDataSet: [
