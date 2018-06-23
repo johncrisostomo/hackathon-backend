@@ -71,6 +71,33 @@ const resolvers = {
             });
 
             return pv;
+        },
+        async addToBarDataSet(parentValue, { name, uv, nameField }) {
+            const newValue = { uv, name: nameField };
+
+            data[name].barDataSet[data[name].barDataSet.length - 1] = newValue;
+
+            pubsub.publish('barDataSetUpdated', {
+                newValue
+            });
+
+            return newValue;
+        },
+        async addToActivityDataSet(
+            parentValue,
+            { name, id, title, text, type }
+        ) {
+            const newValue = { id, title, text, type };
+
+            data[name].activityDataSet[
+                data[name].lineDataSet.length - 1
+            ] = newVAlue;
+
+            pubsub.publish('activityDataSetUpdated', {
+                newValue
+            });
+
+            return newValue;
         }
     },
     Subscription: {
