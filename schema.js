@@ -44,6 +44,10 @@ const typeDefs = `
       activityDataSetUpdated: ActivityData
       barDataSetUpdated: BarData
       pieDataSetUpdated: PieData
+      lineDataSetUpdatedRoom: LineData
+      activityDataSetUpdatedRoom: ActivityData
+      barDataSetUpdatedRoom: BarData
+      pieDataSetUpdatedRoom: PieData
   }
 
   schema {

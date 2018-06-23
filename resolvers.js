@@ -1,128 +1,7 @@
 const { PubSub } = require('graphql-subscriptions');
 const pubsub = new PubSub();
 
-const data = {
-    printer: {
-        lineDataSet: [
-            { date: '6-11', v: 1300 },
-            { date: '6-12', v: 1300 },
-            { date: '6-13', v: 1300 }
-        ],
-        activityDataSet: [
-            {
-                id: 1,
-                title: 'Printer 1',
-                text: 'Printer used.',
-                type: 'printer'
-            },
-            {
-                id: 2,
-                title: 'Printer 2',
-                text: 'Printer used.',
-                type: 'printer'
-            },
-            {
-                id: 3,
-                title: 'Printer 3',
-                text: 'Printer used.',
-                type: 'printer'
-            }
-        ],
-        barDataSet: [
-            {
-                name: 'January',
-                uv: 1000
-            },
-            {
-                name: 'February',
-                uv: 2700
-            },
-            {
-                name: 'March',
-                uv: 3800
-            }
-        ],
-        pieDataSet: [
-            {
-                label: 'Printer A',
-                value: 200,
-                color: '#8f8f8f'
-            },
-
-            {
-                label: 'Printer B',
-                value: 600,
-                color: '#000'
-            },
-
-            {
-                label: 'Printer C',
-                value: 100,
-                color: '#CC0000'
-            }
-        ]
-    },
-    room: {
-        lineDataSet: [
-            { date: '6-21', v: 1300 },
-            { date: '6-22', v: 1300 },
-            { date: '6-23', v: 1300 }
-        ],
-        activityDataSet: [
-            {
-                id: 1,
-                title: 'Room 1',
-                text: 'Printer used.',
-                type: 'printer'
-            },
-            {
-                id: 2,
-                title: 'Room 2',
-                text: 'Printer used.',
-                type: 'printer'
-            },
-            {
-                id: 3,
-                title: 'Room 3',
-                text: 'Printer used.',
-                type: 'printer'
-            }
-        ],
-        barDataSet: [
-            {
-                name: 'May',
-                uv: 1000
-            },
-            {
-                name: 'June',
-                uv: 2700
-            },
-            {
-                name: 'July',
-                uv: 3800
-            }
-        ],
-        pieDataSet: [
-            {
-                label: 'Printer A',
-                value: 670,
-                color: '#7A296B'
-            },
-
-            {
-                label: 'Printer B',
-                value: 380,
-                color: '#AA6039'
-            },
-
-            {
-                label: 'Printer C',
-                value: 250,
-                color: '#549431'
-            }
-        ]
-    }
-};
+const data = require('./mocks');
 
 const resolvers = {
     Query: {
@@ -145,9 +24,15 @@ const resolvers = {
 
             data[name].lineDataSet[data[name].lineDataSet.length - 1] = pv;
 
-            pubsub.publish('lineDataSetUpdated', {
-                lineDataSetUpdated: pv
-            });
+            if (name === 'printer') {
+                pubsub.publish('lineDataSetUpdated', {
+                    lineDataSetUpdated: pv
+                });
+            } else {
+                pubsub.publish('lineDataSetUpdatedRoom', {
+                    lineDataSetUpdatedRoom: pv
+                });
+            }
 
             return pv;
         },
@@ -156,9 +41,15 @@ const resolvers = {
 
             data[name].barDataSet[data[name].barDataSet.length - 1] = newValue;
 
-            pubsub.publish('barDataSetUpdated', {
-                barDataSetUpdated: newValue
-            });
+            if (name === 'printer') {
+                pubsub.publish('barDataSetUpdated', {
+                    barDataSetUpdated: newValue
+                });
+            } else {
+                pubsub.publish('barDataSetUpdatedRoom', {
+                    barDataSetUpdatedRoom: newValue
+                });
+            }
 
             return newValue;
         },
@@ -172,9 +63,15 @@ const resolvers = {
 
             data[name].activityDataSet.push(newValue);
 
-            pubsub.publish('activityDataSetUpdated', {
-                activityDataSetUpdated: newValue
-            });
+            if (name === 'printer') {
+                pubsub.publish('activityDataSetUpdated', {
+                    activityDataSetUpdated: newValue
+                });
+            } else {
+                pubsub.publish('activityDataSetUpdatedRoom', {
+                    activityDataSetUpdatedRoom: newValue
+                });
+            }
 
             return newValue;
         },
@@ -183,9 +80,15 @@ const resolvers = {
 
             data[name].pieDataSet[data[name].pieDataSet.length - 1] = newValue;
 
-            pubsub.publish('pieDataSetUpdated', {
-                pieDataSetUpdated: newValue
-            });
+            if (name === 'printer') {
+                pubsub.publish('pieDataSetUpdated', {
+                    pieDataSetUpdated: newValue
+                });
+            } else {
+                pubsub.publish('pieDataSetUpdatedRoom', {
+                    pieDataSetUpdatedRoom: newValue
+                });
+            }
 
             return newValue;
         }
@@ -202,6 +105,18 @@ const resolvers = {
         },
         pieDataSetUpdated: {
             subscribe: () => pubsub.asyncIterator('pieDataSetUpdated')
+        },
+        lineDataSetUpdatedRoom: {
+            subscribe: () => pubsub.asyncIterator('lineDataSetUpdatedRoom')
+        },
+        barDataSetUpdatedRoom: {
+            subscribe: () => pubsub.asyncIterator('barDataSetUpdatedRoom')
+        },
+        activityDataSetUpdatedRoom: {
+            subscribe: () => pubsub.asyncIterator('activityDataSetUpdatedRoom')
+        },
+        pieDataSetUpdatedRoom: {
+            subscribe: () => pubsub.asyncIterator('pieDataSetUpdatedRoom')
         }
     }
 };
