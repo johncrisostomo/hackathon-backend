@@ -1,6 +1,6 @@
 var faker = require('faker');
 
-module.exports = {
+const data = {
     printer: {
         cardsDataSet: {
             consumed: 1066,
@@ -98,3 +98,5 @@ module.exports = {
             }))
     }
 };
+
+module.exports = () => data;

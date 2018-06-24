@@ -44,6 +44,7 @@ const typeDefs = `
     addToBarDataSet(name: String, uv: Int, nameField: String): BarData
     addToActivityDataSet(name: String, title: String, text: String, type: String) : ActivityData
     addToPieDataSet(name: String, color: String, label: String, value: Int): PieData
+    resetSeed: String
 }
 
   type Subscription {

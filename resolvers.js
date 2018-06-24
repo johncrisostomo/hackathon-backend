@@ -1,7 +1,9 @@
 const { PubSub } = require('graphql-subscriptions');
+const _ = require('lodash');
 const pubsub = new PubSub();
 
-const data = require('./mocks');
+const mockData = require('./mocks');
+let data = _.cloneDeep(mockData());
 
 const resolvers = {
     Query: {
@@ -22,6 +24,10 @@ const resolvers = {
         }
     },
     Mutation: {
+        resetSeed(parentValue) {
+            data = _.cloneDeep(mockData());
+            return 'ok';
+        },
         changePrintCardData(parentValue, { value }) {
             const currentConsumedValue = data.printer.cardsDataSet.consumed;
             const currentLeftValue = data.printer.cardsDataSet.left;
