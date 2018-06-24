@@ -26,6 +26,7 @@ const resolvers = {
     Mutation: {
         resetSeed(parentValue) {
             data = _.cloneDeep(mockData());
+
             return 'ok';
         },
         changePrintCardData(parentValue, { value }) {
