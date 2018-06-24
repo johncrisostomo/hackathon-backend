@@ -4,7 +4,7 @@ const data = {
     printer: {
         cardsDataSet: {
             consumed: 1066,
-            left: 50
+            left: 500
         },
         lineDataSet: [
             { date: '6-09', v: 100 },
