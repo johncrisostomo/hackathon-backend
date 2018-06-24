@@ -23,8 +23,13 @@ const resolvers = {
     },
     Mutation: {
         changePrintCardData(parentValue, { value }) {
-            data.printer.cardsDataSet.consumed + value;
-            data.printer.cardsDataSet.left - value;
+            const currentConsumedValue = data.printer.cardsDataSet.consumed;
+            const currentLeftValue = data.printer.cardsDataSet.left;
+
+            data.printer.cardsDataSet = {
+                left: currentLeftValue - value,
+                consumed: currentConsumedValue + value
+            };
 
             pubsub.publish('printCardDataUpdated', {
                 printCardDataUpdated: data.printer.cardsDataSet
