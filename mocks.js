@@ -3,7 +3,7 @@ var faker = require('faker');
 const data = {
     printer: {
         cardsDataSet: {
-            consumed: 1066,
+            consumed: 1000,
             left: 500
         },
         lineDataSet: [
